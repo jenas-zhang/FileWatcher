@@ -13,6 +13,8 @@ import com.citi.interview.vo.impl.MyFileObj;
  * @author jzhang
  */
 public class StatisticsManager {
+
+	private int TOP_TEN_SIZE = 10;
 	private static StatisticsManager _managerInstance = new StatisticsManager();
 
 	private Set<MyFileObj> topTen = new TreeSet<MyFileObj>(
@@ -35,10 +37,6 @@ public class StatisticsManager {
 	public static StatisticsManager getInstance() {
 		return _managerInstance;
 	}
-
-	public MyFileObj[] getTopFileArray() {
-		return null;
-	}
 	
 	public void addFile(File file) {
 		topTen.add(new MyFileObj(file));
@@ -50,13 +48,13 @@ public class StatisticsManager {
 
 	public MyFileObj[] getTopTen() {
 		MyFileObj ret[] = new MyFileObj[10];
-		int size = 10;
+		int size = TOP_TEN_SIZE;
 
-		if (topTen.size() < 10) {
+		if (topTen.size() < TOP_TEN_SIZE) {
 			size = topTen.size();
 		}
 
-		System.arraycopy(topTen.toArray(new MyFileObj[11]), 0, ret, 0, size);
+		System.arraycopy(topTen.toArray(new MyFileObj[0]), 0, ret, 0, size);
 
 		return ret;
 	}
